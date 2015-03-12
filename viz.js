@@ -2,6 +2,15 @@ google.load('visualization', '1', {
     packages: ['corechart']
 });
 
+// Default (Retreats) chart data
+var chartText = {
+    queryStr: "SELECT Total_R FROM 1sgTnIGOiutCr7mgVdMFjT17BiHfQAblXMHGyYnVw",
+    hAxis: "Retreats",
+    title: "Retreat Behavior",
+    colLabel: "Retreats",
+};
+
+
 // Big Callback function
 // This feels.... dirty
 function drawVisualization() {
@@ -16,10 +25,12 @@ function drawVisualization() {
         }
 
         var data = response.getDataTable();
-        data.setColumnLabel(0, 'Total Retreats');
+        // console.log(data)
+        data.setColumnLabel(0, chartText.colLabel);
         var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+        // var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-    }
+    };
 
     var opts = {
         sendMethod: 'auto'
@@ -30,12 +41,12 @@ function drawVisualization() {
 
     // Set basic graph options
     var options = {
-        title: "Frequency of Retreat Behavior Amongst All Crabs",
+        title: "Frequency of " + chartText.title + " Amongst All Crabs",
         vAxis: {
             title: "Frequency"
         },
         hAxis: {
-            title: "Retreats"
+            title: chartText.hAxis
         },
         // Group buckets by 5
         histogram: {
@@ -44,10 +55,11 @@ function drawVisualization() {
     };
 
     // Get the specific data we want
-    query.setQuery("SELECT Total_R FROM 1sgTnIGOiutCr7mgVdMFjT17BiHfQAblXMHGyYnVw");
+    query.setQuery(chartText.queryStr);
 
     // Send the query with a callback function.
     query.send(handleQueryResponse);
-}
+};
 
+// Run this on load
 google.setOnLoadCallback(drawVisualization);

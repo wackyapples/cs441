@@ -1,14 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html ng-app="crabApp" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>Test Graphs 0</title>
-  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-  <script type="text/javascript" src="viz.js"></script>
-</head>
-<body style="font-family: Arial;border: 0 none;">
-  <div id="chart_div" style="width: 900px; height: 400px;"></div>
+  <title>Test Graphs 1</title>
 
-  <iframe width="900" height="400" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?containerId=googft-gviz-canvas&amp;q=select+col1%2C+AVERAGE(col14)%2C+MAXIMUM(col14)+from+1sgTnIGOiutCr7mgVdMFjT17BiHfQAblXMHGyYnVw+group+by+col1+order+by+col1+asc+limit+10&amp;viz=GVIZ&amp;t=COLUMN&amp;uiversion=2&amp;gco_forceIFrame=true&amp;gco_hasLabelsColumn=true&amp;gco_vAxes=%5B%7B%22title%22%3Anull%2C+%22minValue%22%3Anull%2C+%22maxValue%22%3Anull%2C+%22useFormatFromData%22%3Atrue%2C+%22viewWindow%22%3A%7B%22max%22%3Anull%2C+%22min%22%3Anull%7D%2C+%22logScale%22%3Afalse%7D%2C%7B%22useFormatFromData%22%3Atrue%2C+%22viewWindow%22%3A%7B%22max%22%3Anull%2C+%22min%22%3Anull%7D%2C+%22minValue%22%3Anull%2C+%22maxValue%22%3Anull%2C+%22logScale%22%3Afalse%7D%5D&amp;gco_useFirstColumnAsDomain=true&amp;gco_isStacked=false&amp;gco_booleanRole=certainty&amp;gco_hAxis=%7B%22useFormatFromData%22%3Atrue%2C+%22minValue%22%3Anull%2C+%22maxValue%22%3Anull%2C+%22viewWindow%22%3Anull%2C+%22viewWindowMode%22%3Anull%2C+%22title%22%3A%22Crab+Group%22%7D&amp;gco_legend=in&amp;gco_title=Summary+Of+Retreat+Behavior+By+Crab+Group&amp;gco_domainAxis=%7B%22direction%22%3A1%7D&amp;gco_focusTarget=category&amp;gco_series=%7B%220%22%3A%7B%22errorBars%22%3A%7B%22errorType%22%3A%22percent%22%7D%7D%2C+%221%22%3A%7B%22errorBars%22%3A%7B%22errorType%22%3A%22percent%22%7D%7D%7D&amp;att=true&amp;width=900&amp;height=385"></iframe>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="//www.google.com/jsapi"></script>
+
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/crabstyle.css" />
+  <script type="text/javascript" src="viz.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body>
+
+<!-- Nav bar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Crab Data</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+<!--         <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li> -->
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<!-- Graph & Buttons -->
+<div class="container">
+  <div ng-controller="TierSelect" class="row">
+    <div class="col-md-12">
+      <div id="chart_div" style="height: 400px;"></div>
+
+      <div class="col-md-4">
+        <!-- <pre>{{radioModel || 'null'}}</pre> -->
+        <div class="btn-group">
+          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'1'" ng-click="setTier(1)">Tier 1</label>
+          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'2'" ng-click="setTier(2)">Tier 2</label>
+          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'R'" ng-click="setTier(3)">Retreats</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">A work in progress by Team I2</p>
+  </div>
+</footer>
+
 </body>
 </html>
