@@ -7,40 +7,38 @@
 
 	// Kind of a 'God' controller at the moment, but changes the 
 	// contents of the graph depending on button selected.
-	crabApp.controller('TierSelect', ['$scope', function ($scope){
-		// Default to Retreats, completely arbitrary.
-		$scope.radioModel = 'R';
-		
+	crabApp.controller('TierSelect', ['$scope', function($scope) {
+		// Default to Tier 1, completely arbitrary.
+		$scope.radioModel = 'T1';
+
 		// Function called depending on the button pushed
 		$scope.setTier = function(tier) {
 			$scope.get
 
 			// if-else ladder determining the selected button
-			if (tier === 1) {
+			if (tier === 0) {
 				// Each tier (so far) only sets the chartText map referenced in 
 				// viz.js by the chart drawing function.
 				chartText = {
-					queryStr: "SELECT Total_1 FROM 1sgTnIGOiutCr7mgVdMFjT17BiHfQAblXMHGyYnVw",
-					hAxis: "Tier 1 Actions",
-					title: "Tier 1 Actions",
-					colLabel: "Tier 1 Actions",
+					tier: 0,
+					hAxis: "Crab trio number",
+					title: "tier 1",
+					vAxis: "Total tier 1 behaviors",
 				};
-				
-			}
-			else if (tier === 2) {
+
+			} else if (tier === 1) {
 				chartText = {
-					queryStr: "SELECT Total_2 FROM 1sgTnIGOiutCr7mgVdMFjT17BiHfQAblXMHGyYnVw",
-					hAxis: "Tier 2 Actions",
-					title: "Tier 2 Actions",
-					colLabel: "Tier 2 Actions",
+					tier: 1,
+					hAxis: "Crab trio number",
+					title: "tier 2",
+					vAxis: "Total tier 2 behaviors",
 				};
-			}
-			else if (tier === 3) {
+			} else if (tier === 2) {
 				chartText = {
-				    queryStr: "SELECT Total_R FROM 1sgTnIGOiutCr7mgVdMFjT17BiHfQAblXMHGyYnVw",
-				    hAxis: "Retreats",
-				    title: "Retreat Behavior",
-				    colLabel: "Retreats",
+					tier: 2,
+					hAxis: "Crab trio number",
+					title: "retreat",
+					vAxis: "Total retreat behaviors",
 				};
 			}
 

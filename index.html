@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="crabstyle.css" />
+  <script type="text/javascript" src="data.js"></script>
   <script type="text/javascript" src="viz.js"></script>
   <script type="text/javascript" src="app.js"></script>
 </head>
@@ -47,9 +48,10 @@
       <div class="col-md-4">
         <!-- <pre>{{radioModel || 'null'}}</pre> -->
         <div class="btn-group">
-          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'1'" ng-click="setTier(1)">Tier 1</label>
-          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'2'" ng-click="setTier(2)">Tier 2</label>
-          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'R'" ng-click="setTier(3)">Retreats</label>
+        <!-- Convert setTier(n) to 'computer format' (so T1=0, T2=1, TR=2) -->
+          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'T1'" ng-click="setTier(0)">Tier 1</label>
+          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'T2'" ng-click="setTier(1)">Tier 2</label>
+          <label class="btn btn-primary" ng-model="radioModel" btn-radio="'T3'" ng-click="setTier(2)">Retreats</label>
         </div>
       </div>
     </div>
