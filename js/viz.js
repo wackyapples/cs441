@@ -25,7 +25,11 @@ function drawVisualization() {
         title: "Number of " + chartText.title + " behaviors amongst all crabs",
         height: 400,
         vAxis: {
-            title: chartText.vAxis
+            title: chartText.vAxis,
+            viewWindowMode: 'explict',
+            viewWindow: {
+                max: 200,
+            },
         },
         hAxis: {
             title: chartText.hAxis
