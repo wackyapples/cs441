@@ -2,12 +2,52 @@
 // contains the module and controller(s)
 (function() {
 
+	// Load the Google Charts API
+	google.load('visualization', '1', {
+		packages: ['corechart']
+	});
+
 	// The primary AnguarJS module, using bootstrap
 	var crabApp = angular.module('crabApp', ['ui.bootstrap']);
 
-	// Kind of a 'God' controller at the moment, but changes the 
-	// contents of the graph depending on button selected.
+	// Inital data for the chart (Tier 1)
+	var data = google.visualization.arrayToDataTable(aggroData[0]);
+
+	// Inital graph options for the Google Chart
+	var options = {
+		title: "Number of tier 1 behaviors amongst all crabs",
+		height: 400,
+		vAxis: {
+			title: "Total tier 1 behaviors",
+			viewWindowMode: 'explict',
+			viewWindow: {
+				max: 200,
+			},
+		},
+		hAxis: {
+			title: 'Crab trio number',
+		},
+		legend: {
+			position: 'right',
+		},
+		bar: {
+			groupWidth: '75%'
+		},
+		// Make the chart stacked
+		isStacked: true,
+		animation: {
+			startup: true,
+			duration: 1000,
+			easing: 'inAndOut'
+		},
+	};
+
+	// Changes the contents of the graph depending on button selected.
 	crabApp.controller('TierSelect', ['$scope', function($scope) {
+
+		$scope.chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+
 		// Default to Tier 1, completely arbitrary.
 		$scope.radioModel = 'T1';
 
@@ -17,34 +57,29 @@
 
 			// if-else ladder determining the selected button
 			if (tier === 0) {
-				// Each tier (so far) only sets the chartText map referenced in 
-				// viz.js by the chart drawing function.
-				chartText = {
-					tier: 0,
-					hAxis: "Crab trio number",
-					title: "tier 1",
-					vAxis: "Total tier 1 behaviors",
-				};
+				options.vAxis.title = "Total tier 1 behaviors";
+				options.title = "Number of tier 1 behaviors amongst all crabs";
 
 			} else if (tier === 1) {
-				chartText = {
-					tier: 1,
-					hAxis: "Crab trio number",
-					title: "tier 2",
-					vAxis: "Total tier 2 behaviors",
-				};
+				options.vAxis.title = "Total tier 2 behaviors";
+				options.title = "Number of tier 2 behaviors amongst all crabs";
 			} else if (tier === 2) {
-				chartText = {
-					tier: 2,
-					hAxis: "Crab trio number",
-					title: "retreat",
-					vAxis: "Total retreat behaviors",
-				};
+				options.vAxis.title = "Total retreat behaviors";
+				options.title = "Number of retreat behaviors amongst all crabs";
 			}
 
+			// Sets the data to the selected tier
+			data = google.visualization.arrayToDataTable(aggroData[tier]);
+
 			// Redraw the graph!
-			drawVisualization();
+			$scope.chart.draw(data, options);
 		};
+
+		// Initalization function, draws the chart on page load.
+		$scope.init = function() {
+			$scope.setTier(0);
+		}();
+		// $scope.init();
 
 	}]);
 
