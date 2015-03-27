@@ -16,6 +16,7 @@
 	// Inital graph options for the Google Chart
 	var options = {
 		title: "Number of tier 1 behaviors amongst all crabs",
+		focusTarget: 'category',
 		height: 400,
 		vAxis: {
 			title: "Total tier 1 behaviors",
