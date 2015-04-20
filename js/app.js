@@ -68,9 +68,32 @@
 				options.title = "Number of retreat behaviors amongst all crabs";
 			}
 
-			$scope.crabAvgTest = calcAvg(tier).toFixed(2);
-			$scope.crabTotalTest = calcTotal(tier);
-			$scope.crabPropTest = calcProp(tier).toFixed(2);
+			// For groups, they are represented by the following:
+			// Control = 1
+			// Missing = 2
+			// Regenerated = 3
+			// 
+			// See data.js for the raw data. These numbers are what they are,
+			// i.e. not starting at 1 because the header column (trio number)
+			// occupies position 0.
+
+			// Calculate the mean number of behaviors per trio per group
+			$scope.crabAvg = {};
+			for (var i = 1; i <= 3; i++) {
+				$scope.crabAvg[i] = calcAvg(tier, i).toFixed(2);
+			};
+
+			// Calculate the total number of behaviors across a group
+			$scope.crabTotal = {};
+			for (var i = 1; i <= 3; i++) {
+				$scope.crabTotal[i] = calcTotal(tier, i);
+			};
+
+			// Calculate the proportion of behaviors per group per tier
+			$scope.crabProp = {};
+			for (var i = 1; i <= 3; i++) {
+				$scope.crabProp[i] = calcProp(tier, i).toFixed(2);
+			};
 
 			// Sets the data to the selected tier
 			data = google.visualization.arrayToDataTable(aggroData[tier]);
@@ -79,43 +102,46 @@
 			$scope.chart.draw(data, options);
 		};
 
-		function calcAvg(tier) {
+		// Calculate the mean number of behaviors per trio per group
+		function calcAvg(tier, group) {
 			var treatAvg = 0;
 			var j = 0;
+			// This style of for() is significantly faster than
+			// alternatives.
 			for (var i = aggroData[tier].length - 1; i >= 1; i--) {
 				j++;
-				treatAvg += aggroData[tier][i][1];
+				treatAvg += aggroData[tier][i][group];
 			};
 			return treatAvg/j;
-			// aggroData[tier]
 		};
 
-		function calcTotal(tier) {
+		// Calculate the total number of behaviors across a group
+		function calcTotal(tier, group) {
 			var treatTotal = 0;
 			for (var i = aggroData[tier].length - 1; i >= 1; i--) {
-				treatTotal += aggroData[tier][i][1];
+				treatTotal += aggroData[tier][i][group];
 			};
 			return treatTotal;
-			// aggroData[tier]
 		};
 
-		function calcProp(tier) {
+		// Calculate the proportion of behaviors per group per tier
+		function calcProp(tier, group) {
 			var grandTotal = 0;
 			var treatTotal = 0;
 			for (var i = aggroData[tier].length - 1; i >= 1; i--) {
 				
-				treatTotal += aggroData[tier][i][1];
+				treatTotal += aggroData[tier][i][group];
 
 				for (var j = 1; j <= 3; j++) {
 					grandTotal += aggroData[tier][i][j];
 				};
 
 			};
+			// Convert decimal into percentage
 			return (treatTotal/grandTotal) * 100;
-			// aggroData[tier]
 		};
 
-		// Initalization function, draws the chart on page load.
+		// Initialization function, draws the chart on page load.
 		$scope.init = function() {
 			$scope.setTier(0);
 		}();

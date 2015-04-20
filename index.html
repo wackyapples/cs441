@@ -58,7 +58,8 @@
         </div>
       </div>
 
-      <table class="table">
+      <!-- Majestic table. See app.js for info about group number -->
+      <table class="table table-bordered table-hover stats">
         <thead>
           <th>Treatment Group</th>
           <th>Total behaviors</th>
@@ -68,9 +69,21 @@
         <tbody>
           <tr>
             <th scope="row">Control</th>
-            <td>{{crabTotalTest}}</td>
-            <td>{{crabPropTest}}</td>
-            <td>{{crabAvgTest}}</td>
+            <td>{{crabTotal[1]}}</td>
+            <td>{{crabProp[1]}}%</td>
+            <td>{{crabAvg[1]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Missing</th>
+            <td>{{crabTotal[2]}}</td>
+            <td>{{crabProp[2]}}%</td>
+            <td>{{crabAvg[2]}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Regenerated</th>
+            <td>{{crabTotal[3]}}</td>
+            <td>{{crabProp[3]}}%</td>
+            <td>{{crabAvg[3]}}</td>
           </tr>
         </tbody>
       </table>
