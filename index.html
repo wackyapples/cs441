@@ -47,7 +47,9 @@
       <div id="chart_div"></div>
 
       <div class="col-md-4">
-        <!-- <pre>{{radioModel || 'null'}}</pre> -->
+<!--         <div class="stats">
+          {{crabAvgTest || 'null'}}, {{crabTotalTest || 'null'}}, {{crabPropTest || 'null'}}%
+        </div> -->
         <div class="btn-group">
         <!-- Convert setTier(n) to 'computer format' (so T1=0, T2=1, TR=2) -->
           <label class="btn btn-primary" ng-model="radioModel" btn-radio="'T1'" ng-click="setTier(0)">Tier 1</label>
@@ -55,6 +57,23 @@
           <label class="btn btn-primary" ng-model="radioModel" btn-radio="'T3'" ng-click="setTier(2)">Retreats</label>
         </div>
       </div>
+
+      <table class="table">
+        <thead>
+          <th>Treatment Group</th>
+          <th>Total behaviors</th>
+          <th>Percent of total behaviors</th>
+          <th>Mean number of behaviors</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Control</th>
+            <td>{{crabTotalTest}}</td>
+            <td>{{crabPropTest}}</td>
+            <td>{{crabAvgTest}}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
