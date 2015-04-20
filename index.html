@@ -18,7 +18,7 @@
 <body>
 
 <!-- Nav bar -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse">
   <div class="container">
     <div class="navbar-header">
       <!-- Menu button for mobile view -->
@@ -56,34 +56,36 @@
       </div>
 
       <!-- Majestic table. See app.js for info about group number -->
-      <table class="table table-hover stats">
-        <thead>
-          <th>Treatment Group</th>
-          <th>Total behaviors</th>
-          <th>Percent of total behaviors</th>
-          <th>Mean number of behaviors</th>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Control</th>
-            <td>{{crabTotal[1]}}</td>
-            <td>{{crabProp[1]}}%</td>
-            <td>{{crabAvg[1]}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Missing</th>
-            <td>{{crabTotal[2]}}</td>
-            <td>{{crabProp[2]}}%</td>
-            <td>{{crabAvg[2]}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Regenerated</th>
-            <td>{{crabTotal[3]}}</td>
-            <td>{{crabProp[3]}}%</td>
-            <td>{{crabAvg[3]}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="stats">
+        <table class="table table-hover stats">
+          <thead>
+            <th>Treatment Group</th>
+            <th>Total behaviors</th>
+            <th>Percent of total behaviors</th>
+            <th>Mean number of behaviors</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Control</th>
+              <td>{{crabTotal[1]}}</td>
+              <td>{{crabProp[1]}}%</td>
+              <td>{{crabAvg[1]}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Missing</th>
+              <td>{{crabTotal[2]}}</td>
+              <td>{{crabProp[2]}}%</td>
+              <td>{{crabAvg[2]}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Regenerated</th>
+              <td>{{crabTotal[3]}}</td>
+              <td>{{crabProp[3]}}%</td>
+              <td>{{crabAvg[3]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
